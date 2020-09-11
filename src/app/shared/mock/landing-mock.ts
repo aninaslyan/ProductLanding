@@ -12,7 +12,8 @@ export const productInfo: IProductInfo = {
     manfDate: 'Tue Dec 01 2019 19:13:11 GMT+0400 (Armenia Standard Time)',
     expDate: 'Tue Jan 01 2026 19:13:11 GMT+0400 (Armenia Standard Time)',
     country: 'USA'
-  }
+  },
+  socialLinks: ['facebook', 'twitter', 'instagram']
 };
 
 export const productConfig: IProductConfig = {
@@ -21,5 +22,7 @@ export const productConfig: IProductConfig = {
   showProductImage: true,
   showProductDesc: true,
   showProvenance: true,
-  showAppStoreInfo: true
+  showAppStoreInfo: true,
+  showUrls: true,
+  showSocialIcons: true,
 };

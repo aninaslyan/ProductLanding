@@ -6,6 +6,7 @@ export interface IProductInfo {
   description2: string;
   hyperlinks: Array<string>;
   provenanceDetails: IItemDetails;
+  socialLinks: Array<socialLink>;
 }
 
 export interface IProductConfig {
@@ -15,6 +16,8 @@ export interface IProductConfig {
   showProductDesc: boolean;
   showProvenance: boolean;
   showAppStoreInfo: boolean;
+  showUrls: boolean;
+  showSocialIcons: boolean;
 }
 
 export interface IItemDetails {
@@ -23,3 +26,5 @@ export interface IItemDetails {
   expDate: string;
   country: string;
 }
+
+export type socialLink = 'facebook' | 'twitter' | 'instagram';

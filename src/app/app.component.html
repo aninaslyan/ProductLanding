@@ -85,7 +85,7 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <div *ngIf="productConfig.showUrls" class="container">
     <div class="row">
       <div class="col">
         <div *ngFor="let link of productInfo.hyperlinks" style="text-align: left;">
@@ -125,11 +125,11 @@
         </ul>
         <p class="text-muted small mb-4 mb-lg-0">© {{productInfo.brandImage}} 2020. All Rights Reserved.</p>
       </div>
-      <div class="col-lg-6 my-auto h-100 text-center text-lg-right">
+      <div *ngIf="productConfig.showSocialIcons" class="col-lg-6 my-auto h-100 text-center text-lg-right">
         <ul class="list-inline mb-0">
-          <li class="list-inline-item"><a href="#"><i class="fa fa-facebook fa-2x fa-fw"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fa fa-twitter fa-2x fa-fw"></i></a></li>
-          <li class="list-inline-item"><a href="#"><i class="fa fa-instagram fa-2x fa-fw"></i></a></li>
+          <li *ngFor="let link of productInfo.socialLinks" class="list-inline-item">
+            <a href="#"><i class="fa fa-{{link}} fa-2x fa-fw"></i></a>
+          </li>
         </ul>
       </div>
     </div>
