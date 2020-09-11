@@ -1,31 +1,36 @@
 <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
-  <div class="container"><a class="navbar-brand" href="#">Brand</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
+  <div class="container">
+    <a *ngIf="productConfig.showBrandImage" class="navbar-brand" href="#">{{productInfo.brandImage}}</a>
+    <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
     <div class="collapse navbar-collapse" id="navcol-1"></div>
   </div>
 </nav>
 <section class="showcase"></section>
 <section class="testimonials text-center bg-light">
   <div class="container">
-    <h2 class="mb-5">Baby Shampoo 100ml</h2>
+    <h2 class="mb-5" *ngIf="productConfig.showProductName">{{productInfo.name}}</h2>
     <div class="row">
       <div class="col-lg-4">
         <div class="mx-auto testimonial-item mb-5 mb-lg-0">
           <h5></h5>
-          <p class="font-weight-light mb-0"><br>NO MORE TEARS formula is as gentle to the eyes as pure water.Will not irritate baby's delicate skin and eyes during normal use. Rinses easily, leaving hair soft, shiny, manageable and cleanClinically proven to be gentle and
-            mild. Soap-free, alcohol-free, hypoallergenic and allergy- and dermatologist-tested.cheaper by the case (case of 12) - get it for wholesale price<br><br></p>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded img-fluid" src="assets/img/J&J%20Product.png" alt="">
-          <h5>0381370037248</h5>
-          <p class="font-weight-light mb-0">J&amp;J Baby Shampoo</p>
+          <p *ngIf="productConfig.showProductDesc" class="font-weight-light mb-0">
+            <br>{{productInfo.description1}}<br><br>
+          </p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="mx-auto testimonial-item mb-5 mb-lg-0">
+          <img *ngIf="productConfig.showProductImage" class="rounded img-fluid" src="{{imagePath}}/J&J%20Product.png" alt="{{productInfo.brandImage}}">
+          <h5>{{productInfo.id}}</h5>
+          <p *ngIf="productConfig.showProductDesc" class="font-weight-light mb-0">{{productInfo.description2}}</p>
+        </div>
+      </div>
+      <div *ngIf="productConfig.showProvenance" class="col-lg-4">
+        <div class="mx-auto testimonial-item mb-5 mb-lg-0">
           <h5>Provenance</h5>
           <p class="font-weight-light mb-0"></p>
-          <div class="form-group rounded-left"><label for="lotValue" style="text-align: left;">Lot Number:&nbsp;</label><input type="text" id="lotValue" class="form-control form-control-sm" placeholder="ABC1234"></div>
+          <div class="form-group rounded-left"><label for="lotValue" style="text-align: left;">Lot Number:&nbsp;</label><input
+            type="text" id="lotValue" class="form-control form-control-sm" placeholder="ABC1234"></div>
         </div>
         <div></div>
         <div class="row">
@@ -33,7 +38,9 @@
         </div>
         <div></div>
         <div class="row">
-          <div class="col"><button class="btn btn-primary" type="button">Submit</button></div>
+          <div class="col">
+            <button class="btn btn-primary" type="button">Submit</button>
+          </div>
         </div>
         <div>
           <div class="row"></div>
@@ -47,28 +54,28 @@
               <div class="table-responsive">
                 <table class="table">
                   <thead>
-                  <tr>
-                    <th></th>
-                    <th></th>
-                  </tr>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Lot</td>
-                    <td>ABD122</td>
-                  </tr>
-                  <tr>
-                    <td>Manf. Date</td>
-                    <td>2019-12-01</td>
-                  </tr>
-                  <tr>
-                    <td>Exp. Date</td>
-                    <td>2026-01-01</td>
-                  </tr>
-                  <tr>
-                    <td>Country</td>
-                    <td>USA</td>
-                  </tr>
+                    <tr>
+                      <td>Lot</td>
+                      <td>{{productInfo.provenanceDetails?.lot}}</td>
+                    </tr>
+                    <tr>
+                      <td>Manf. Date</td>
+                      <td>{{productInfo.provenanceDetails?.manfDate | date:'yyyy-MM-dd'}}</td>
+                    </tr>
+                    <tr>
+                      <td>Exp. Date</td>
+                      <td>{{productInfo.provenanceDetails?.expDate | date:'yyyy-MM-dd'}}</td>
+                    </tr>
+                    <tr>
+                      <td>Country</td>
+                      <td>{{productInfo.provenanceDetails?.country}}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -81,14 +88,14 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <div style="text-align: left;"><a href="#">Product information at J&amp;J</a></div>
-        <div style="text-align: left;"><a href="#">Buy online</a></div>
-        <div style="text-align: left;"><a href="#">Get special coupons and discounts by authenticating</a></div>
+        <div *ngFor="let link of productInfo.hyperlinks" style="text-align: left;">
+          <a href="#">{{link}}</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<div>
+<div *ngIf="productConfig.showAppStoreInfo">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -97,7 +104,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6"><img class="img-thumbnail img-thumbnail" src="assets/img/store.png" width="150" height="100" style="text-align: right;" alt=""></div>
+      <div class="col-md-6">
+        <img class="img-thumbnail img-thumbnail" src="{{imagePath}}/store.png" width="150" height="100" style="text-align: right;" alt="store">
+      </div>
     </div>
   </div>
 </div>
@@ -114,7 +123,7 @@
           <li class="list-inline-item"><span>⋅</span></li>
           <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
         </ul>
-        <p class="text-muted small mb-4 mb-lg-0">© Brand 2020. All Rights Reserved.</p>
+        <p class="text-muted small mb-4 mb-lg-0">© {{productInfo.brandImage}} 2020. All Rights Reserved.</p>
       </div>
       <div class="col-lg-6 my-auto h-100 text-center text-lg-right">
         <ul class="list-inline mb-0">
